@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1775583681551",
+    "name": "Chandrakant",
+    "phone": "09451481758",
+    "city": "Lucknow",
+    "kw": "5kw",
+    "type": "quick-lead",
+    "createdAt": "2026-04-07T17:41:19.767Z",
+    "read": false
+  },
+  {
+    "id": "1775891832358",
+    "name": "mahesh",
+    "phone": "9988776655",
+    "city": "lucknoww",
+    "kw": "5",
+    "type": "quick-lead",
+    "createdAt": "2026-04-11T07:17:12.339Z",
+    "read": false
+  },
+  {
+    "id": "1775893598912",
+    "name": "Aviral Shukla",
+    "phone": "09451481758",
+    "city": "Sitapur",
+    "kw": "7",
+    "type": "quick-lead",
+    "createdAt": "2026-04-11T07:46:38.897Z",
+    "read": false
+  },
+  {
+    "id": "1776753735804",
+    "name": "Aviral Shukla",
+    "phone": "08383811977",
+    "city": "JAIPUR",
+    "kw": "3",
+    "type": "quick-lead",
+    "createdAt": "2026-04-21T06:42:15.679Z",
+    "read": false
+  },
+  {
+    "id": "1776757186147",
+    "name": "Aviral Shukla",
+    "phone": "08383811977",
+    "city": "JAIPUR",
+    "kw": "7",
+    "type": "quick-lead",
+    "createdAt": "2026-04-21T07:39:46.001Z",
+    "read": false
+  }
+]

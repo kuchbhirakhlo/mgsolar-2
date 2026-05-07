@@ -1,0 +1,403 @@
+// ===========================================
+// FIRESTORE SECURITY RULES FOR MG SOLAR ADMIN PANEL
+// ===========================================
+// CURRENTLY USING DEVELOPMENT RULES (allow all operations)
+// For production: Uncomment the authenticated rules below and comment out the development rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /*
+    // ===========================================
+    // CUSTOMER DATA - Admin and Employee Access
+    // ===========================================
+    match /customers/{customerId} {
+      // Allow read/write for authenticated admin users
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['customers', 'all']));
+
+      // Allow read for employees (limited access)
+      allow read: if request.auth != null &&
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role == 'employee' &&
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['customers_read']);
+
+      // Validate customer data structure
+      allow create: if request.resource.data.keys().hasAll(['customerName', 'mobileNumber', 'address', 'createdBy']) &&
+        request.resource.data.customerName is string &&
+        request.resource.data.mobileNumber is string &&
+        request.resource.data.mobileNumber.matches('[0-9]{10}') &&
+        request.resource.data.address is string;
+    }
+    */
+
+    /*
+    // ===========================================
+    // EMPLOYEE DATA - Admin Only Access
+    // ===========================================
+    match /employees/{employeeId} {
+      // Only super admins and admins can manage employees
+      allow read, write, update, delete: if request.auth != null &&
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['employees', 'all']);
+
+      // Validate employee data
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'mobileNumber']) &&
+        request.resource.data.name is string &&
+        request.resource.data.email.matches('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}') &&
+        request.resource.data.mobileNumber.matches('[0-9]{10}');
+    }
+    */
+
+    /*
+    // ===========================================
+    // PROJECT DATA - Admin and Manager Access
+    // ===========================================
+    match /projects/{projectId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['projects', 'all']));
+
+      // Validate project data
+      allow create: if request.resource.data.keys().hasAll(['title', 'location', 'capacity']) &&
+        request.resource.data.title is string &&
+        request.resource.data.location is string &&
+        request.resource.data.capacity is string;
+    }
+
+    // ===========================================
+    // MATERIAL DISPATCH - Admin Access Only
+    // ===========================================
+    match /materialDispatches/{dispatchId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['material_dispatch', 'all']));
+
+      // Validate dispatch data
+      allow create: if request.resource.data.keys().hasAll(['customerId', 'billNumber', 'data']) &&
+        request.resource.data.customerId is string &&
+        request.resource.data.billNumber is string &&
+        request.resource.data.data is list;
+    }
+
+    // ===========================================
+    // PAYMENT DATA - Admin and Manager Access
+    // ===========================================
+    match /payments/{paymentId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['payments', 'all']));
+
+      // Validate payment data
+      allow create: if request.resource.data.keys().hasAll(['customerId', 'projectCost']) &&
+        request.resource.data.customerId is string &&
+        request.resource.data.projectCost is number;
+    }
+
+    // ===========================================
+    // LEADS DATA - From Contact Forms (Admin Read, Public Write)
+    // ===========================================
+    match /leads/{leadId} {
+      // Allow anyone to submit leads (for contact forms)
+      allow create: if request.resource.data.keys().hasAll(['name', 'phone']) &&
+        request.resource.data.name is string &&
+        request.resource.data.phone is string;
+
+      // Only admins can read/update/delete leads
+      allow read, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['messages', 'all']));
+    }
+
+    // ===========================================
+    // CONTACTS DATA - From Contact Forms (Admin Read, Public Write)
+    // ===========================================
+    match /contacts/{contactId} {
+      // Allow anyone to submit contacts
+      allow create: if request.resource.data.keys().hasAll(['name', 'phone']) &&
+        request.resource.data.name is string &&
+        request.resource.data.phone is string;
+
+      // Only admins can read/update/delete contacts
+      allow read, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['messages', 'all']));
+    }
+
+    // ===========================================
+    // ADMIN USERS - Super Admin Only
+    // ===========================================
+    match /adminUsers/{userId} {
+      // Only super admins can manage admin users
+      allow read, write, update, delete: if request.auth != null &&
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role == 'super_admin' ||
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['all']);
+
+      // Validate admin user data
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'role']) &&
+        request.resource.data.name is string &&
+        request.resource.data.email.matches('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}') &&
+        request.resource.data.role in ['super_admin', 'admin', 'manager', 'employee'];
+    }
+
+    // ===========================================
+    // JOBS DATA - Public Read, Admin Write
+    // ===========================================
+    match /jobs/{jobId} {
+      // Allow public to read jobs (for careers page)
+      allow read: if true;
+
+      // Only admins can create/update/delete jobs
+      allow write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['careers', 'all']));
+
+      // Validate job data
+      allow create: if request.resource.data.keys().hasAll(['title', 'description']) &&
+        request.resource.data.title is string &&
+        request.resource.data.description is string;
+    }
+
+    // ===========================================
+    // CAREERS DATA - Job Applications (Admin Read, Public Write)
+    // ===========================================
+    match /careers/{applicationId} {
+      // Allow anyone to submit job applications
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'phone']) &&
+        request.resource.data.name is string &&
+        request.resource.data.email.matches('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}') &&
+        request.resource.data.phone is string;
+
+      // Only admins can manage applications
+      allow read, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['careers', 'all']));
+    }
+
+    // ===========================================
+    // INSTALLATIONS DATA - Admin and Employee Access
+    // ===========================================
+    match /installations/{installationId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['installations', 'all']));
+
+      // Allow employees to read installations
+      allow read: if request.auth != null &&
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role == 'employee';
+    }
+
+    // ===========================================
+    // MATERIAL BILL DATA - Admin Access
+    // ===========================================
+    match /materialBills/{billId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['material_bills', 'all']));
+    }
+
+    // ===========================================
+    // CONTENT DATA - Admin Access
+    // ===========================================
+    match /content/{contentId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['content', 'all']));
+    }
+
+    // ===========================================
+    // DEFAULT DENY - Deny all other operations
+    // ===========================================
+    match /{document=**} {
+      allow read, write, update, delete: if false;
+    }
+    */
+
+    // ===========================================
+    // MATERIAL DISPATCH - Admin Access Only
+    // ===========================================
+    match /materialDispatches/{dispatchId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['material_dispatch', 'all']));
+
+      // Validate dispatch data
+      allow create: if request.resource.data.keys().hasAll(['customerId', 'billNumber', 'data']) &&
+        request.resource.data.customerId is string &&
+        request.resource.data.billNumber is string &&
+        request.resource.data.data is list;
+    }
+
+    // ===========================================
+    // PAYMENT DATA - Admin and Manager Access
+    // ===========================================
+    match /payments/{paymentId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['payments', 'all']));
+
+      // Validate payment data
+      allow create: if request.resource.data.keys().hasAll(['customerId', 'projectCost']) &&
+        request.resource.data.customerId is string &&
+        request.resource.data.projectCost is number;
+    }
+
+    // ===========================================
+    // LEADS DATA - From Contact Forms (Admin Read, Public Write)
+    // ===========================================
+    match /leads/{leadId} {
+      // Allow anyone to submit leads (for contact forms)
+      allow create: if request.resource.data.keys().hasAll(['name', 'phone']) &&
+        request.resource.data.name is string &&
+        request.resource.data.phone is string;
+
+      // Only admins can read/update/delete leads
+      allow read, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['messages', 'all']));
+    }
+
+    // ===========================================
+    // CONTACTS DATA - From Contact Forms (Admin Read, Public Write)
+    // ===========================================
+    match /contacts/{contactId} {
+      // Allow anyone to submit contacts
+      allow create: if request.resource.data.keys().hasAll(['name', 'phone']) &&
+        request.resource.data.name is string &&
+        request.resource.data.phone is string;
+
+      // Only admins can read/update/delete contacts
+      allow read, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['messages', 'all']));
+    }
+
+    // ===========================================
+    // ADMIN USERS - Super Admin Only
+    // ===========================================
+    match /adminUsers/{userId} {
+      // Only super admins can manage admin users
+      allow read, write, update, delete: if request.auth != null &&
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role == 'super_admin' ||
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['all']);
+
+      // Validate admin user data
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'role']) &&
+        request.resource.data.name is string &&
+        request.resource.data.email.matches('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}') &&
+        request.resource.data.role in ['super_admin', 'admin', 'manager', 'employee'];
+    }
+
+    // ===========================================
+    // JOBS DATA - Public Read, Admin Write
+    // ===========================================
+    match /jobs/{jobId} {
+      // Allow public to read jobs (for careers page)
+      allow read: if true;
+
+      // Only admins can create/update/delete jobs
+      allow write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['careers', 'all']));
+
+      // Validate job data
+      allow create: if request.resource.data.keys().hasAll(['title', 'description']) &&
+        request.resource.data.title is string &&
+        request.resource.data.description is string;
+    }
+
+    // ===========================================
+    // CAREER APPLICATIONS - Job Applications (Admin Read, Public Write)
+    // ===========================================
+    match /career_applications/{applicationId} {
+      // Allow anyone to submit job applications
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'phone']) &&
+        request.resource.data.name is string &&
+        request.resource.data.email.matches('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}') &&
+        request.resource.data.phone is string;
+
+      // Only admins can read/update/delete applications
+      allow read, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['careers', 'all']));
+    }
+
+    // ===========================================
+    // INSTALLATIONS DATA - Admin and Employee Access
+    // ===========================================
+    match /installations/{installationId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['installations', 'all']));
+
+      // Allow employees to read installations
+      allow read: if request.auth != null &&
+        get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role == 'employee';
+    }
+
+    // ===========================================
+    // MATERIAL BILL DATA - Admin Access
+    // ===========================================
+    match /materialBills/{billId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin', 'manager'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['material_bills', 'all']));
+    }
+
+    // ===========================================
+    // CONTENT DATA - Admin Access
+    // ===========================================
+    match /content/{contentId} {
+      allow read, write, update, delete: if request.auth != null &&
+        (get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['super_admin', 'admin'] ||
+         get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.permissions.hasAny(['content', 'all']));
+    }
+
+    // ===========================================
+    // DEVELOPMENT RULES (Currently Active) - Allow all operations
+    // ===========================================
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+
+// ===========================================
+// DEPLOYMENT INSTRUCTIONS
+// ===========================================
+// CURRENT STATUS: Development rules are active (allow all operations)
+//
+// 1. Go to Firebase Console: https://console.firebase.google.com
+// 2. Select your project (mgsolarwebapp)
+// 3. Click "Firestore Database" → "Rules" tab
+// 4. Copy and paste this entire file content
+// 5. Click "Publish"
+//
+// For Production (when ready):
+// 1. Uncomment all the authenticated rules (currently commented out)
+// 2. Comment out the development rules at the bottom
+// 3. Implement Firebase Authentication in your Next.js app
+// 4. Create admin users in the adminUsers collection
+// 5. Redeploy the rules
+//
+// For Development (current state):
+// - All operations are allowed (no authentication required)
+// - Perfect for testing and development
+// ===========================================
+// 1. Go to Firebase Console: https://console.firebase.google.com
+// 2. Select your project (mgsolarwebapp)
+// 3. Click "Firestore Database" in the left sidebar
+// 4. Click the "Rules" tab
+// 5. Replace the existing rules with this file content
+// 6. Click "Publish"
+//
+// For Production:
+// - Use the authenticated rules above (comment out development rules)
+// - Implement Firebase Authentication in your app
+// - Create admin users in the adminUsers collection
+//
+// For Development:
+// - Use the development rules (uncomment the match /{document=**} section)
+// - Comment out all the authenticated rules above
+// ===========================================

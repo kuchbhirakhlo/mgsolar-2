@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Alice Wilson",
+    "email": "alice@example.com",
+    "phone": "9876543213",
+    "message": "Interested in solar installation for my home",
+    "read": false
+  },
+  {
+    "name": "Charlie Brown",
+    "email": "charlie@example.com",
+    "phone": "9876543214",
+    "message": "Need quote for commercial solar panels",
+    "read": false
+  }
+]

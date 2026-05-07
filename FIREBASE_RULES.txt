@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.email in [
+        // Add admin email addresses here
+        'admin@mgsolar.com' // Replace with actual admin emails
+      ];
+    }
+
+    function isEmployee() {
+      return isAuthenticated() && exists(/databases/$(database)/documents/employees/$(request.auth.uid));
+    }
+
+    function getUserRole() {
+      return get(/databases/$(database)/documents/employees/$(request.auth.uid)).data.role;
+    }
+
+    // Projects collection - Public read, Admin write
+    match /projects/{projectId} {
+      allow read: if true; // Public read access for website display
+      allow write: if true; // Temporarily allow write for development
+      allow update: if true; // Temporarily allow update for development
+      allow delete: if true; // Temporarily allow delete for development
+    }
+
+    // Brands collection - Public read, Admin write
+    match /brands/{brandId} {
+      allow read: if true; // Public read access for website display
+      allow write: if true; // Temporarily allow write for development
+      allow update: if true; // Temporarily allow update for development
+      allow delete: if true; // Temporarily allow delete for development
+    }
+
+    // Contact Messages collection - Admin only
+    match /contactMessages/{messageId} {
+      allow read: if true; // Temporarily allow read for development
+      allow write: if true; // Allow anyone to submit contact forms
+      allow update: if true; // Temporarily allow update for development
+      allow delete: if true; // Temporarily allow delete for development
+    }
+
+    // Career Applications collection - Admin only
+    match /careerApplications/{applicationId} {
+      allow read: if true; // Temporarily allow read for development
+      allow write: if true; // Allow anyone to submit applications
+      allow update: if true; // Temporarily allow update for development
+      allow delete: if true; // Temporarily allow delete for development
+    }
+
+    // Employees collection - Restricted access
+    match /employees/{employeeId} {
+      allow read: if true; // Temporarily allow read for development
+      allow write: if true; // Temporarily allow write for development
+      allow update: if true; // Temporarily allow update for development
+      allow delete: if true; // Temporarily allow delete for development
+    }
+
+    // Customers collection - Admin and Employee access
+    match /customers/{customerId} {
+      allow read: if true; // Temporarily allow read for development
+      allow write: if true; // Temporarily allow write for development
+      allow update: if true; // Temporarily allow update for development
+      allow delete: if true; // Temporarily allow delete for development
+    }
+
+    // Installations collection - Admin and Employee access
+    match /installations/{installationId} {
+      allow read: if true; // Temporarily allow read for development
+      allow write: if true; // Temporarily allow write for development
+      allow update: if true; // Temporarily allow update for development
+      allow delete: if true; // Temporarily allow delete for development
+    }
+  }
+}

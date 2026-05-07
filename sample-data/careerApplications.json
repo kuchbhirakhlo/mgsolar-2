@@ -1,0 +1,20 @@
+[
+  {
+    "name": "David Lee",
+    "email": "david@example.com",
+    "phone": "9876543215",
+    "position": "Solar Technician",
+    "experience": "3 years",
+    "resume": "/resumes/david_lee.pdf",
+    "message": "Passionate about renewable energy"
+  },
+  {
+    "name": "Eva Martinez",
+    "email": "eva@example.com",
+    "phone": "9876543216",
+    "position": "Project Manager",
+    "experience": "5 years",
+    "resume": "/resumes/eva_martinez.pdf",
+    "message": "Experienced in solar project management"
+  }
+]

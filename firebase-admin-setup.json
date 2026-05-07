@@ -1,0 +1,11 @@
+// Firebase Admin User Setup
+// This document contains the admin user data to add to Firestore
+
+{
+  "name": "Vipin Gaur",
+  "email": "vipingaur89@gmail.com",
+  "role": "super_admin",
+  "permissions": ["all"],
+  "createdAt": "2026-04-21T13:36:00+05:30",
+  "active": true
+}

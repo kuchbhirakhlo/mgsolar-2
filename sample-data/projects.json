@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Residential Solar Installation",
+    "description": "Complete solar panel installation for a 3-bedroom house in Bangalore",
+    "location": "Bangalore, Karnataka",
+    "capacity": "5 kW",
+    "image": "/images/projects/residential1.jpg",
+    "date": "2024-01-15"
+  },
+  {
+    "title": "Commercial Solar Farm",
+    "description": "Large-scale solar farm installation for industrial complex",
+    "location": "Mumbai, Maharashtra",
+    "capacity": "100 kW",
+    "image": "/images/projects/commercial1.jpg",
+    "date": "2024-02-20"
+  },
+  {
+    "title": "Rooftop Solar System",
+    "description": "Rooftop solar installation for apartment complex",
+    "location": "Delhi, NCR",
+    "capacity": "25 kW",
+    "image": "/images/projects/rooftop1.jpg",
+    "date": "2024-03-10"
+  }
+]

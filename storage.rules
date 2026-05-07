@@ -1,0 +1,47 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Projects images - Public read, Admin write
+    match /projects/{allPaths=**} {
+      allow read: if true; // Public read for website display
+      allow write: if true; // Temporarily allow all writes for testing
+      allow delete: if request.auth != null && request.auth.token.email in [
+        'admin@mgsolar.com' // Replace with actual admin emails
+      ];
+    }
+
+    // Brands images - Public read, Admin write
+    match /brands/{allPaths=**} {
+      allow read: if true; // Public read for website display
+      allow write: if request.auth != null && request.auth.token.email in [
+        'admin@mgsolar.com' // Replace with actual admin emails
+      ];
+      allow delete: if request.auth != null && request.auth.token.email in [
+        'admin@mgsolar.com' // Replace with actual admin emails
+      ];
+    }
+
+    // Employee documents - Admin and Employee access
+    match /employees/{allPaths=**} {
+      allow read, write, delete: if request.auth != null && (
+        request.auth.token.email in ['admin@mgsolar.com'] ||
+        exists(/databases/$(database)/documents/employees/$(request.auth.uid))
+      );
+    }
+
+    // General uploads - Authenticated users only
+    match /uploads/{allPaths=**} {
+      allow read, write, delete: if request.auth != null;
+    }
+
+    // Installation photos - Admin and Employee access (frontend protected)
+    match /installations/{allPaths=**} {
+      allow read, write, delete: if true;
+    }
+
+    // Material bills - Admin and Employee access (frontend protected)
+    match /materialBills/{allPaths=**} {
+      allow read, write, delete: if true;
+    }
+  }
+}
