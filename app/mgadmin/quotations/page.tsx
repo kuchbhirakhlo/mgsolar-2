@@ -115,7 +115,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
     {/* Page 1 */}
     <Page size="A4" style={styles.page}>
       <View style={styles.watermark}>
-        <PDFImage src="/mgsolarlogo.jpg" style={{ width: 200, height: 200 }} />
+        <PDFImage src="/mgsolarlogo.png" style={{ width: 200, height: 200 }} />
       </View>
       <PDFImage src="/mgsolarheader.png" style={styles.headerImage} />
       <Text style={styles.quotationNo}>Quotation No: {form.quotationNo}</Text>
@@ -200,7 +200,7 @@ const QuotationPDF = ({ form }: { form: any }) => (
     {/* Page 2 */}
     <Page size="A4" style={styles.page}>
       <View style={styles.watermark}>
-        <PDFImage src="/mgsolarlogo.jpg" style={{ width: 200, height: 200 }} />
+        <PDFImage src="/mgsolarlogo.png" style={{ width: 200, height: 200 }} />
       </View>
       <PDFImage src="/mgsolarheader.png" style={styles.headerImage} />
       <View style={{ marginTop: 40 }}>
@@ -658,7 +658,7 @@ export default function QuotationPage() {
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
-              <img src="/mgsolarlogo.jpg" alt="logo" width={400} height={400}/>
+              <img src="/mgsolarlogo.png" alt="logo" width={400} height={400}/>
             </div>
 
             {/* Header Image */}
@@ -731,7 +731,7 @@ export default function QuotationPage() {
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
-              <img src="/mgsolarlogo.jpg" alt="logo" width={400} height={400}/>
+              <img src="/mgsolarlogo.png" alt="logo" width={400} height={400}/>
             </div>
 
              {/* Header Image */}
@@ -817,7 +817,7 @@ export default function QuotationPage() {
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
-              <img src="/mgsolarlogo.jpg" alt="logo" width={400} height={400}/>
+              <img src="/mgsolarlogo.png" alt="logo" width={400} height={400}/>
             </div>
 
             {/* Header Image */}
@@ -873,7 +873,7 @@ export default function QuotationPage() {
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
-              <img src="/mgsolarlogo.jpg" alt="logo" width={400} height={400}/>
+              <img src="/mgsolarlogo.png" alt="logo" width={400} height={400}/>
             </div>
 
             {/* Header Image */}
@@ -909,7 +909,7 @@ export default function QuotationPage() {
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
-              <img src="/mgsolarlogo.jpg" alt="logo" width={400} height={400}/>
+              <img src="/mgsolarlogo.png" alt="logo" width={400} height={400}/>
             </div>
 
             {/* Header Image */}
@@ -944,7 +944,7 @@ export default function QuotationPage() {
 
             {/* Watermark */}
             <div className="absolute inset-0 flex items-center justify-center opacity-10 watermark">
-              <img src="/mgsolarlogo.jpg" alt="logo" width={400} height={400}/>
+              <img src="/mgsolarlogo.png" alt="logo" width={400} height={400}/>
             </div>
 
             {/* Header Image */}

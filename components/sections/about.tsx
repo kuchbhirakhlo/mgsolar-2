@@ -28,7 +28,7 @@ export function AboutSection() {
           {/* Image */}
           <div className="h-64 md:h-96 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
             <Image
-              src="/mgsolarlogo.jpg"
+              src="/mgsolarlogo.png"
               alt="About MG Solar"
               width={200}
               height={100}

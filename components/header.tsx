@@ -59,7 +59,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center w-32 h-10 gap-2 relative">
             <Image
-              src="/mgsolarlogo.jpg"
+              src="/mgsolarlogo.png"
               alt="MG Solar Logo"
               fill
               className="object-contain"
