@@ -3,54 +3,13 @@
 import { useLanguage } from '@/lib/language-context';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Menu, ChevronDown, User, LogOut } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Menu } from 'lucide-react';
+import { useState } from 'react';
 import Image from 'next/image';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 
 export function Header() {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState<any>(null);
-
-  useEffect(() => {
-    // Check login status on mount and when storage changes
-    const checkLoginStatus = () => {
-      const loggedIn = sessionStorage.getItem('employeeLoggedIn') === 'true';
-      const data = loggedIn ? JSON.parse(sessionStorage.getItem('employeeData') || '{}') : null;
-
-      // Only show for employee and installer roles
-      if (loggedIn && data && (data.role === 'employee' || data.role === 'installer')) {
-        setIsLoggedIn(true);
-        setUserData(data);
-      } else {
-        setIsLoggedIn(false);
-        setUserData(null);
-      }
-    };
-
-    checkLoginStatus();
-
-    // Listen for storage changes
-    const handleStorageChange = () => checkLoginStatus();
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
-
-  const handleLogout = () => {
-    sessionStorage.removeItem('employeeLoggedIn');
-    sessionStorage.removeItem('employeeData');
-    setIsLoggedIn(false);
-    setUserData(null);
-    window.location.href = '/';
-  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-muted shadow-sm">
@@ -92,55 +51,6 @@ export function Header() {
             >
               <Link href="#contact">{t.hero.cta}</Link>
             </Button>
-            {isLoggedIn && userData ? (
-              <div className="hidden sm:flex items-center gap-2">
-                <span className="text-sm font-medium">Hello, {userData.name}</span>
-                <Button variant="outline" onClick={handleLogout} size="sm">
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="hidden sm:flex">
-                    <User className="w-4 h-4 mr-2" />
-                    Login
-                    <ChevronDown className="w-4 h-4 ml-2" />
-                  </Button>
-                </DropdownMenuTrigger>
-              </DropdownMenu>
-            )}
-            {isLoggedIn && userData ? (
-              <div className="md:hidden flex items-center gap-2">
-                <span className="text-sm font-medium">Hello, {userData.name}</span>
-                <Button variant="outline" onClick={handleLogout} size="sm">
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="md:hidden">
-                    <User className="w-4 h-4 mr-2" />
-                    Login
-                    <ChevronDown className="w-4 h-4 ml-2" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem asChild>
-                    <Link href="/admin-login">Admin</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/employee-login">Employee</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/installer-login">Engineer</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )}
             <button
               className="md:hidden p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

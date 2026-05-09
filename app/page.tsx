@@ -11,14 +11,14 @@ import { ContactSection } from '@/components/sections/contact';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Best Solar Panel Dealer & Installation Services in Lucknow | MG Solar Uttar Pradesh',
-  description: 'Looking for reliable solar panel installation in Lucknow, Gorakhpur, Ayodhya, Barabanki, Bahraich, Gonda & Kushinagar? Get affordable rooftop solar installation, maintenance, repair & after-sales services from MG Solar.',
+  title: 'Best Solar Panel Dealer & Installation Services in Lucknow | MG Light Solar Uttar Pradesh',
+  description: 'Looking for reliable solar panel installation in Lucknow, Gorakhpur, Ayodhya, Barabanki, Bahraich, Gonda & Kushinagar? Get affordable rooftop solar installation, maintenance, repair & after-sales services from MG Light Solar.',
   keywords: [
     'solar panels Lucknow',
     'solar installation Uttar Pradesh',
     'solar dealer Lucknow',
     'rooftop solar system',
-    'MG Solar ',
+    'MG Light Solar',
     'best solar panels UP',
     'solar installer Lucknow',
     'renewable energy Lucknow',
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     'hybrid solar system dealer in Gonda',
     'solar battery replacement in Kushinagar'
   ],
-  authors: [{ name: 'M.G. Enterprises' }],
-  creator: 'M.G. Enterprises',
-  publisher: 'M.G. Enterprises',
+  authors: [{ name: 'MG Light Solar PVT LTD' }],
+  creator: 'MG Light Solar PVT LTD',
+  publisher: 'MG Light Solar PVT LTD',
   formatDetection: {
     email: false,
     address: false,
@@ -52,10 +52,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'M.G. Enterprises - Solar Panel Experts in Lucknow',
+    title: 'MG Light Solar PVT LTD - Solar Panel Experts in Lucknow',
     description: 'Professional solar panel installation and dealer services in Lucknow, Uttar Pradesh. Quality solar solutions for your home and business.',
     url: 'https://mgsolar.co.in',
-    siteName: 'M.G. Enterprises',
+    siteName: 'MG Light Solar PVT LTD',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -63,15 +63,15 @@ export const metadata: Metadata = {
         url: '/homeheroimage.jpg',
         width: 1200,
         height: 630,
-        alt: 'MG Solar Panel Installation Services in Lucknow and Uttar Pradesh',
+        alt: 'MG Light Solar Panel Installation Services in Lucknow and Uttar Pradesh',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Best Solar Panel Dealer & Installation Services in Lucknow | MG Solar Uttar Pradesh',
+    title: 'Best Solar Panel Dealer & Installation Services in Lucknow | MG Light Solar Uttar Pradesh',
     description: 'Looking for reliable solar panel installation in Lucknow, Gorakhpur, Ayodhya, Barabanki, Bahraich, Gonda & Kushinagar? Get affordable rooftop solar installation, maintenance, repair & after-sales services.',
-    images: [{ url: '/homeheroimage.jpg', alt: 'MG Solar Panel Installation Services in Lucknow and Uttar Pradesh' }],
+    images: [{ url: '/homeheroimage.jpg', alt: 'MG Light Solar Panel Installation Services in Lucknow and Uttar Pradesh' }],
   },
   robots: {
     index: true,
@@ -93,23 +93,30 @@ export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "M.G. Enterprises",
-    "description": "Leading solar panel dealer and installer in Lucknow, Uttar Pradesh. Providing high-quality solar panels, installation services, and renewable energy solutions.",
+    "name": "MG Light Solar PVT LTD",
+    "description": "Leading solar panel dealer and installer in Lucknow, Uttar Pradesh. Providing high-quality solar panels, installation services, maintenance, and renewable energy solutions.",
     "url": "https://mgsolar.co.in",
-    "telephone": "+91-XXXXXXXXXX", // Add actual phone
-    "email": "mgenterprises0037@gmail.com", // Add actual email
+    "telephone": "+91 88404 71901",
+    "email": "mgenterprises0037@gmail.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Vibhuti Khand, Gomti Nagar",
+      "streetAddress": "MG Road, Kalyanpur",
       "addressLocality": "Lucknow",
       "addressRegion": "Uttar Pradesh",
-      "postalCode": "226010",
+      "postalCode": "226022",
       "addressCountry": "IN"
     },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 26.8467, // Lucknow coordinates
       "longitude": 80.9462
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "reviewCount": "51",
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "openingHours": "Mo-Sa 09:00-18:00",
     "priceRange": "$$",
@@ -173,7 +180,7 @@ export default function Home() {
               'Solar Installation UP',
               'Solar Dealer Lucknow',
               'Rooftop Solar System',
-              'MG Solar ',
+              'MG Light Solar',
               'Best Solar Panels Uttar Pradesh',
               'Solar Installer Lucknow',
               'Renewable Energy Lucknow',
