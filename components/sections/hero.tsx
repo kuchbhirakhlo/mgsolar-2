@@ -65,9 +65,8 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-gradient-to-br from-primary via-primary to-primary/90 text-white overflow-hidden py-16 lg:py-24 flex items-center"
-      style={{ backgroundImage: 'url(/heroimage.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}
-    >
+      className="relative h-[92vh] bg-gradient-to-br from-primary via-primary to-primary/90 text-white overflow-hidden py-16 lg:py-24 flex items-center"
+      style={{ backgroundImage: 'url(/heroimage.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 right-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
@@ -80,7 +79,7 @@ export function HeroSection() {
           {/* Content Section */}
           <div className="max-w-2xl space-y-6 lg:space-y-8">
             <div className="space-y-4">
-              <h1 className="text-3xl sm:text-4xl text-secondary lg:text-5xl font-bold leading-tight text-balance">
+              <h1 className="text-3xl sm:text-4xl text-primary lg:text-5xl font-bold leading-tight text-balance">
                 {t.hero.title}
               </h1>
               <p className="text-base sm:text-lg lg:text-xl text-blue-100 text-balance leading-relaxed">

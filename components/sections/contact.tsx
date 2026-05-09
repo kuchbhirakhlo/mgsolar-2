@@ -48,7 +48,7 @@ export function ContactSection() {
           {/* Google Map */}
           <div className="w-full h-full min-h-[400px] rounded-lg overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18815.80229599178!2d80.99207135937336!3d26.856445892252786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be32c8953726b%3A0x964537d9419ffe65!2sMG%20Solar%20Panel%20Installation%20Services%20(A%20Unit%20of%20MG%20Enterprise&#39;s)%20Lucknow!5e0!3m2!1sen!2sin!4v1775658954780!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.8506630443812!2d80.96762057549226!3d26.90823417664973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957c184586ca7%3A0xb58658a8a7baab3c!2sMG%20LIght%20Solar%20PVT%20LTD!5e0!3m2!1sen!2sin!4v1778316231009!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: '400px' }}

@@ -40,23 +40,23 @@ export function ServicesSection() {
     {
       icon: <ResidentialIcon />,
       image: '/homesolar.png',
-      title: t.services.items.residential.name,
-      description: t.services.items.residential.description,
-      features: ['Panel Installation', 'Inverter Setup', 'Wiring & Safety', 'Monitoring System'],
+      title: 'Solar Panel Installation',
+      description: 'Professional installation of high-quality solar panels for residential and commercial properties with expert technicians and guaranteed workmanship.',
+      features: ['Site Assessment', 'Panel Mounting', 'Electrical Integration', 'System Testing'],
     },
     {
       icon: <CommercialIcon />,
       image: '/commercialsolarpanel.webp',
-      title: t.services.items.commercial.name,
-      description: t.services.items.commercial.description,
-      features: ['Large Scale Systems', 'Roof Assessment', 'Grid Integration', 'Maintenance Plans'],
+      title: 'Solar Energy Systems',
+      description: 'Complete solar energy solutions including photovoltaic systems, inverters, batteries, and monitoring equipment for optimal energy generation.',
+      features: ['System Design', 'Component Supply', 'Grid Connection', 'Performance Monitoring'],
     },
     {
       icon: <MaintenanceIcon />,
       image: '/solarservices.jpeg',
-      title: t.services.items.maintenance.name,
-      description: t.services.items.maintenance.description,
-      features: ['Regular Checks', 'Cleaning Service', 'Repairs', 'Performance Optimization'],
+      title: 'Solar Panel Maintenance',
+      description: 'Comprehensive maintenance and repair services to ensure your solar system operates at peak efficiency with regular inspections and prompt repairs.',
+      features: ['System Inspection', 'Panel Cleaning', 'Component Repair', 'Performance Optimization'],
     },
   ];
 
@@ -70,28 +70,29 @@ export function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-12">
           {services.map((service, index) => (
-            <Card
+            <div
               key={index}
-              className="border-muted hover:border-accent hover:shadow-lg transition-all duration-300 overflow-hidden"
+              className="flex flex-col items-center max-w-xs group cursor-pointer"
             >
-              <div className="h-48 overflow-hidden">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+              <div className="relative w-48 h-48 rounded-full border-4 border-primary/20 hover:border-primary hover:shadow-2xl transition-all duration-300 overflow-hidden mb-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+                <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">{service.title}</CardTitle>
-                <CardDescription className="text-base">{service.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {service.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="text-foreground/80">{feature}</span>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+              <div className="text-center space-y-3">
+                <h3 className="text-2xl font-bold text-primary">{service.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <div className="space-y-2">
+                  {service.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm justify-center">
+                      <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
+                      <span className="text-gray-700 font-medium">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

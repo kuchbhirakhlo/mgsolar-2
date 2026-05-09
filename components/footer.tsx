@@ -12,17 +12,23 @@ export function Footer() {
       <div className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           <div>
-            <p className="text-blue-100 text-sm mb-4">
-              MG Solar is a leading provider of MG Solar , helping homes and businesses transition to clean, renewable energy. We specialize in residential and commercial solar installations, maintenance, and support services.
-            </p>
-            <p className="text-blue-100 text-sm">
-              <strong>Address:</strong> Chetna Towers, D-62, Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh 226010<br />
-              <strong>Phone:</strong> +916307868355
+                        <div className="mb-4">
+              <Image
+                src="/mgsolarlogo.png"
+                alt="MG Light Solar Pvt Ltd"
+                width={80}
+                height={40}
+                className="brightness-0 invert"
+                suppressHydrationWarning
+              />
+            </div>
+            <p className="text-black text-sm mb-4">
+              MG Light Solar Pvt Ltd (CIN: U35105UP2024PTC195857) is a premier solar energy company based in Lucknow, Uttar Pradesh.
             </p>
           </div>
           <div>
             <h3 className="font-semibold mb-4">{t.footer.company}</h3>
-            <ul className="space-y-2 text-sm text-blue-100">
+            <ul className="space-y-2 text-sm text-black">
               <li>
                 <Link href="#home" className="hover:text-secondary transition">
                   {t.nav.home}
@@ -33,17 +39,13 @@ export function Footer() {
                   {t.about.title}
                 </Link>
               </li>
-              <li>
-                <Link href="#careers" className="hover:text-secondary transition">
-                  {t.nav.careers}
-                </Link>
-              </li>
+
             </ul>
           </div>
 
           <div>
             <h3 className="font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-sm text-blue-100">
+            <ul className="space-y-2 text-sm text-black">
               <li>
                 <Link href="#services" className="hover:text-secondary transition">
                   {t.services.title}
@@ -67,30 +69,11 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold mb-4">Connect</h3>
-            <ul className="space-y-2 text-sm text-blue-100">
-              <li>
-                <a href="https://www.facebook.com/mgsolarcompany/" className="hover:text-secondary transition">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-secondary transition">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-secondary transition">
-                  Instagram
-                </a>
-              </li>
-            </ul>
-          </div>
+
 
           <div>
             <h3 className="font-semibold mb-4">Office</h3>
-            <ul className="space-y-2 text-sm text-blue-100">
+            <ul className="space-y-2 text-sm text-black">
               <li>
                 <Link href="/admin-login" className="hover:text-secondary transition">
                   Admin Login
@@ -107,11 +90,26 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>         
+          </div>
+
+          <div className="flex flex-col items-left">
+            <div className="">
+              <p className="text-white text-sm font-medium mb-2">Our Address</p>
+              <p className="text-black text-sm">
+                MG Road, Kalyanpur<br />
+                Lucknow, Uttar Pradesh 226022<br />
+                India
+              </p>
+              <p className="text-black text-sm">
+              <strong>Phone:</strong> +91 88404 71901<br />
+              <strong>Directors:</strong> Mohammad Ifham Ahamad, Gulafsha Siddiqui
+            </p>
+            </div>
+          </div>
         </div>
-        <div className="border-t border-white/10 pt-8 flex justify-between text-sm text-blue-100">
+        <div className="border-t border-white/10 pt-8 flex justify-between text-sm text-black">
           <p>
-            © 2024 MG Solar. All rights reserved.
+            © 2024 MG Light Solar Pvt Ltd. All rights reserved.
           </p>
           <p>
             Powered By <a href="http://procotech.in" className="hover:text-secondary transition">Proco Technologies</a>

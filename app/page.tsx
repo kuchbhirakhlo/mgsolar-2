@@ -4,9 +4,9 @@ import { HeroSection } from '@/components/sections/hero';
 import { ServicesSection } from '@/components/sections/services';
 import { ProjectsSection } from '@/components/sections/projects';
 import { BrandsSection } from '@/components/sections/brands';
-import { ReviewsSection } from '@/components/sections/reviews';
+
 import { AboutSection } from '@/components/sections/about';
-import { CareersSection } from '@/components/sections/careers';
+
 import { ContactSection } from '@/components/sections/contact';
 import { Metadata } from 'next';
 
@@ -160,9 +160,7 @@ export default function Home() {
         <ServicesSection />
         <ProjectsSection />
         <BrandsSection />
-        <ReviewsSection />
         <AboutSection />
-        <CareersSection />
         <ContactSection />
       </main>
 

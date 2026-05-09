@@ -78,9 +78,7 @@ export function Header() {
             <Link href="#brands" className="text-foreground hover:text-primary transition">
               {t.nav.brands}
             </Link>
-            <Link href="#careers" className="text-foreground hover:text-primary transition">
-              {t.nav.careers}
-            </Link>
+
             <Link href="#contact" className="text-foreground hover:text-primary transition">
               {t.nav.contact}
             </Link>
@@ -111,17 +109,6 @@ export function Header() {
                     <ChevronDown className="w-4 h-4 ml-2" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem asChild>
-                    <Link href="/admin-login">Admin</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/employee-login">Employee</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/installer-login">Engineer</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
               </DropdownMenu>
             )}
             {isLoggedIn && userData ? (
@@ -194,13 +181,7 @@ export function Header() {
             >
               {t.nav.brands}
             </Link>
-            <Link
-              href="#careers"
-              className="block text-foreground hover:text-primary transition"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {t.nav.careers}
-            </Link>
+
             <Link
               href="#contact"
               className="block text-foreground hover:text-primary transition"

@@ -75,39 +75,39 @@ const getProjectIcon = (title: string): React.ReactElement => {
 const defaultRecentProjects: Project[] = [
   {
     id: '1',
-    title: 'Residential Complex - Mumbai',
-    location: 'Mumbai, Maharashtra',
-    capacity: '250 kW',
+    title: 'Residential Solar Installation - Lucknow',
+    location: 'Lucknow, Uttar Pradesh',
+    capacity: '5 kW',
     date: '2024',
     icon: <ResidentialIcon />,
-    image: '',
+    image: '/homesolar.png',
   },
   {
     id: '2',
-    title: 'Factory Solar Installation',
-    location: 'Pune, Maharashtra',
-    capacity: '500 kW',
+    title: 'Commercial Building Project',
+    location: 'Kanpur, Uttar Pradesh',
+    capacity: '25 kW',
     date: '2024',
     icon: <FactoryIcon />,
-    image: '',
+    image: '/commercialsolarpanel.webp',
   },
   {
     id: '3',
-    title: 'School Campus Project',
-    location: 'Bangalore, Karnataka',
-    capacity: '150 kW',
+    title: 'School Solar Power System',
+    location: 'Ayodhya, Uttar Pradesh',
+    capacity: '15 kW',
     date: '2023',
     icon: <SchoolIcon />,
-    image: '',
+    image: '/solarservices.jpeg',
   },
   {
     id: '4',
-    title: 'Hotel Solar Setup',
-    location: 'Goa, Goa',
-    capacity: '200 kW',
+    title: 'Industrial Solar Installation',
+    location: 'Gorakhpur, Uttar Pradesh',
+    capacity: '50 kW',
     date: '2023',
     icon: <HotelIcon />,
-    image: '',
+    image: '/commercialsolarpanel.webp',
   },
 ];
 
@@ -148,42 +148,60 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {recentProjects.map((project: Project) => (
-            <Card
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {recentProjects.map((project: Project, index) => (
+            <div
               key={project.id}
-              className="overflow-hidden hover:shadow-lg hover:border-accent transition-all duration-300 group"
+              className="relative group cursor-pointer transform hover:scale-105 transition-all duration-300"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="h-40 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary/30 group-hover:to-secondary/30 transition-all overflow-hidden">
-                {project.image && project.image.startsWith('http') ? (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={300}
-                    height={160}
-                    className="w-full h-full object-cover"
-                    unoptimized
-                    loading="lazy"
-                  />
-                ) : (
-                  project.icon!
-                )}
-              </div>
-              <CardHeader>
-                <CardTitle className="text-lg text-primary">{project.title}</CardTitle>
-                <CardDescription className="text-sm">{project.location}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-foreground/70">Capacity</span>
-                  <span className="font-semibold text-accent">{project.capacity}</span>
+              <Card className="overflow-hidden border-0 shadow-xl hover:shadow-2xl bg-gradient-to-br from-white to-gray-50 h-full">
+                <div className="relative h-48 bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/10 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {project.image && project.image.startsWith('http') ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={300}
+                      height={192}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      unoptimized
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="relative z-10 group-hover:scale-110 transition-transform duration-300">
+                      {project.icon}
+                    </div>
+                  )}
+                  <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    {project.capacity}
+                  </div>
                 </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-foreground/70">Year</span>
-                  <span className="font-semibold">{project.date}</span>
-                </div>
-              </CardContent>
-            </Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xl font-bold text-primary group-hover:text-primary/80 transition-colors line-clamp-2">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-base font-medium text-gray-600 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    {project.location}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="font-semibold">{project.date}</span>
+                    </div>
+                    <div className="w-3 h-3 bg-accent rounded-full animate-pulse shadow-lg"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
 
