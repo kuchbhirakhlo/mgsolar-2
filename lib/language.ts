@@ -9,7 +9,7 @@ export const translations = {
       contact: 'Contact',
     },
     hero: {
-      title: 'Best Solar Panel Dealer & Installation Services in Lucknow, Gorakhpur & Uttar Pradesh',
+      title: 'Best Solar Panel Dealer & Installation Services in Lucknow',
       subtitle: 'Powering homes and businesses with clean, renewable energy for a sustainable future',
       cta: 'Get Started',
     },

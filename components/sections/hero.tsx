@@ -66,6 +66,7 @@ export function HeroSection() {
     <section
       id="home"
       className="relative min-h-screen bg-gradient-to-br from-primary via-primary to-primary/90 text-white overflow-hidden py-16 lg:py-24 flex items-center"
+      style={{ backgroundImage: 'url(/heroimage.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-10">
@@ -75,11 +76,11 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center">
+        <div className="flex flex-col gap-8 items-end justify-end text-right">
           {/* Content Section */}
-          <div className="flex-1 lg:flex-none lg:w-1/2 text-center lg:text-left space-y-6 lg:space-y-8">
+          <div className="max-w-2xl space-y-6 lg:space-y-8">
             <div className="space-y-4">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-balance">
+              <h1 className="text-3xl sm:text-4xl text-secondary lg:text-5xl font-bold leading-tight text-balance">
                 {t.hero.title}
               </h1>
               <p className="text-base sm:text-lg lg:text-xl text-blue-100 text-balance leading-relaxed">
@@ -87,7 +88,7 @@ export function HeroSection() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-end">
               <Button
                 asChild
                 size="lg"
@@ -102,42 +103,6 @@ export function HeroSection() {
               >
                 Learn More
               </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 lg:gap-6 pt-6 lg:pt-8">
-              <div className="text-center">
-                <div className="text-xl lg:text-2xl font-bold mb-1">500+</div>
-                <p className="text-xs lg:text-sm text-blue-100">Installations</p>
-              </div>
-              <div className="text-center">
-                <div className="text-xl lg:text-2xl font-bold mb-1">50MW</div>
-                <p className="text-xs lg:text-sm text-blue-100">Capacity</p>
-              </div>
-              <div className="text-center">
-                <div className="text-xl lg:text-2xl font-bold mb-1">10k+</div>
-                <p className="text-xs lg:text-sm text-blue-100">Happy Customers</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Video Section */}
-          <div className="flex-1 lg:flex-none lg:w-2/5 relative">
-            <div className="relative h-64 lg:h-80 xl:h-96 max-w-md mx-auto lg:mx-0">
-              <video
-                src="/herovideo.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover rounded-2xl shadow-xl"
-                suppressHydrationWarning
-              />
-              {/* Video overlay gradient for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl pointer-events-none"></div>
-              {/* Decorative elements */}
-              <div className="absolute -top-2 -right-2 w-16 h-16 bg-secondary/20 rounded-full blur-lg hidden lg:block pointer-events-none"></div>
-              <div className="absolute -bottom-3 -left-3 w-20 h-20 bg-primary/20 rounded-full blur-lg hidden lg:block pointer-events-none"></div>
             </div>
           </div>
         </div>

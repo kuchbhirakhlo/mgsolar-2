@@ -57,12 +57,12 @@ export function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center w-32 h-10 gap-2 relative">
+          <Link href="/" className="flex items-center w-48 h-16 gap-2 relative">
             <Image
               src="/mgsolarlogo.png"
               alt="MG Solar Logo"
               fill
-              className="object-contain"
+              className="object-contain w-48 h-16"
               suppressHydrationWarning
             />
           </Link>
@@ -88,12 +88,6 @@ export function Header() {
 
           {/* Language Toggle & CTA */}
           <div className="flex items-center gap-4">
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-              className="px-3 py-2 rounded-lg bg-muted text-sm font-medium hover:bg-accent hover:text-accent-foreground transition"
-            >
-              {language === 'en' ? 'हिन्दी' : 'EN'}
-            </button>
             <Button
               asChild
               className="hidden sm:flex bg-secondary text-secondary-foreground hover:bg-secondary/90"
