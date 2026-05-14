@@ -12,7 +12,7 @@ export function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/916307868355?text=Hello%2C%20I%20am%20interested%20in%20solar%20solutions"
+      href="https://wa.me/918840471901?text=Hello%2C%20I%20am%20interested%20in%20solar%20solutions"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition-all flex items-center justify-center z-40 hover:scale-110"

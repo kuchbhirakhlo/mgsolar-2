@@ -6,6 +6,23 @@ import Link from 'next/link';
 
 import { useState, useEffect, useRef } from 'react';
 
+function TypingText({ text, speed = 50, className = "" }: { text: string; speed?: number; className?: string }) {
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(text.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, speed);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, text, speed]);
+
+  return <span className={className}>{displayedText}<span className="animate-pulse">|</span></span>;
+}
+
 export function HeroSection() {
   const { t } = useLanguage();
   const [showPopup, setShowPopup] = useState(false);
@@ -79,11 +96,11 @@ export function HeroSection() {
           {/* Content Section */}
           <div className="max-w-2xl space-y-6 lg:space-y-8">
             <div className="space-y-4">
-              <h1 className="text-3xl sm:text-4xl text-primary lg:text-5xl font-bold leading-tight text-balance">
-                {t.hero.title}
+              <h1 className="text-3xl sm:text-4xl text-secondary lg:text-5xl font-bold leading-tight text-balance">
+                <TypingText text={t.hero.title} speed={100} />
               </h1>
               <p className="text-base sm:text-lg lg:text-xl text-blue-100 text-balance leading-relaxed">
-                {t.hero.subtitle}
+                <TypingText text={t.hero.subtitle} speed={50} />
               </p>
             </div>
 

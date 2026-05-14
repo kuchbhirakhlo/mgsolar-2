@@ -4,30 +4,44 @@ import { useLanguage } from '@/lib/language-context';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export function Header() {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-muted shadow-sm">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center w-48 h-16 gap-2 relative">
+          <Link href="/" className="flex items-center w-20 h-20 gap-2 relative">
             <Image
               src="/mgsolarlogo.png"
               alt="MG Solar Logo"
               fill
-              className="object-contain w-48 h-16"
+              className="object-contain w-28 h-28"
               suppressHydrationWarning
             />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
+            <Link href="/" className="text-foreground hover:text-primary transition">
+              {t.nav.home}
+            </Link>
             <Link href="#services" className="text-foreground hover:text-primary transition">
               {t.nav.services}
             </Link>
