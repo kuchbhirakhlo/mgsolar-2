@@ -5,30 +5,18 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, FolderOpen, MessageSquare, LogOut, Users, UserPlus, Wrench, X, CreditCard, Truck, FileText, Briefcase, Receipt } from 'lucide-react';
 import { signOut } from 'firebase/auth';
 import { getAuth } from '@/lib/firebase';
+import Image from 'next/image';
 
 const adminNavItems = [
   { href: '/mgadmin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/mgadmin/customers', label: 'Customers', icon: UserPlus },
-  { href: '/mgadmin/quotations', label: 'Quotations', icon: FileText },
-  { href: '/mgadmin/installations', label: 'Installations', icon: Wrench },
   { href: '/mgadmin/projects', label: 'Projects', icon: FolderOpen },
-  { href: '/mgadmin/payments', label: 'Payments', icon: CreditCard },
-  { href: '/mgadmin/material-dispatch', label: 'Material Dispatch', icon: Truck },
   { href: '/mgadmin/careers', label: 'Careers', icon: Briefcase },
-  { href: '/mgadmin/material-bill', label: 'Material Bills', icon: Receipt },
   { href: '/mgadmin/messages', label: 'Messages', icon: MessageSquare },
-  { href: '/mgadmin/employees', label: 'Employees', icon: Users },
 ];
 
-const employeeNavItems = [
-  { href: '/mgadmin/customers', label: 'Customers', icon: UserPlus },
-  { href: '/mgadmin/quotations', label: 'Quotations', icon: FileText },
-  { href: '/mgadmin/payments', label: 'Payments', icon: CreditCard },
-];
+const employeeNavItems: typeof adminNavItems = [];
 
-const installerNavItems = [
-  { href: '/mgadmin/installations', label: 'Engineers', icon: Wrench },
-];
+const installerNavItems: typeof adminNavItems = [];
 
 interface AdminSidebarProps {
   isEmployee?: boolean;
@@ -80,16 +68,9 @@ export function AdminSidebar({ isEmployee = false, isInstaller = false, onClose,
     }`}>
       <div className={`flex items-center justify-between ${collapsed ? 'px-3 py-4' : 'p-6'} flex-shrink-0`}>
         <Link href="/" className={`flex items-center ${collapsed ? 'justify-center' : 'gap-2'}`}>
-          <div className={`rounded-lg bg-secondary flex items-center justify-center ${
-            collapsed ? 'w-8 h-8' : 'w-10 h-10'
-          }`}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={`text-primary ${
-              collapsed ? 'w-4 h-4' : 'w-6 h-6'
-            }`}>
-              <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-            </svg>
+          <div >
           </div>
-          {!collapsed && <span className="font-semibold text-sm">MG Solar</span>}
+          {!collapsed && <Image src="/mgsolarlogo.png" alt="MG Solar Logo" width={120} height={30} className="object-contain brightness-0 invert" />}
         </Link>
         {onClose && (
           <button

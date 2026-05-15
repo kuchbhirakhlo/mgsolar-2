@@ -80,12 +80,12 @@ export function ServicesSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
                 <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <div className="text-center space-y-3">
+              <div className="text-left space-y-3">
                 <h3 className="text-2xl font-bold text-primary">{service.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{service.description}</p>
                 <div className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-sm justify-center">
+                    <div key={idx} className="flex items-left gap-2 text-sm justify-left">
                       <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{feature}</span>
                     </div>

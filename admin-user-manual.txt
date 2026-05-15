@@ -1,0 +1,17 @@
+// Alternative: Manual Admin User Creation
+// If the script doesn't work, add this data manually in Firebase Console
+
+/*
+Firestore Document Path: adminUsers/vipingaur89@gmail.com
+
+Document Data:
+{
+  "name": "Vipin Gaur",
+  "email": "vipingaur89@gmail.com",
+  "role": "super_admin",
+  "permissions": ["all"],
+  "active": true,
+  "createdAt": "2026-05-15T11:45:00+05:30"
+}
+*/</content>
+<parameter name="filePath">admin-user-manual.txt
